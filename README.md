@@ -1,1 +1,1 @@
-<t1>Hotel Threads</t1>
+<h1>Hotel Threads</h1>
