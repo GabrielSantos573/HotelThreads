@@ -13,7 +13,9 @@ class Quarto {
         this.qtdHospedes = 0;
     }
 
+    // Método para reservar o quarto com um hóspede específico
     public synchronized void reservar(Hospede hospede) throws InterruptedException, Qcheio {
+        // Enquanto o quarto estiver ocupado ou limpo e atingiu a capacidade máxima de hóspedes, espera
         while (ocupado || (limpo && qtdHospedes >= 4)) {
             if (!limpo) {
                 System.out.println("Quarto " + num + " sendo limpo " + hospede.getName() + "aguardando...");
@@ -22,8 +24,10 @@ class Quarto {
             }
             System.out.println("---------------------");
             wait();
+            // Aguarda notificação para continuar
         }
 
+        // Se o quarto não estiver ocupado, adiciona o hóspede e atualiza o estado do quarto
         if (!ocupado) {
             hospedes[qtdHospedes++] = hospede;
             System.out.println(hospede.getName() + " reservou para si o Quarto " + num + ".");
@@ -35,7 +39,7 @@ class Quarto {
             }
             return;
         }
-
+        // Lança uma exceção se o quarto estiver lotado
         throw new Qcheio("Quarto " + num + " está lotado.");
     }
 
@@ -46,7 +50,7 @@ class Quarto {
                 hospedes[i] = null;
             }
         }
-        qtdHospedes = 0;
+        qtdHospedes = 0;// Reseta o contador de hóspedes
         ocupado = false;
         limpo = false;
         System.out.println("Quarto " + num + " livre. Limpeza acontecendo.");
@@ -54,18 +58,20 @@ class Quarto {
         notifyAll();
     }
 
+    // Método para limpar o quarto
     public synchronized void limpar() throws Qocupado {
         if (ocupado) {
             throw new Qocupado("Quarto " + num + " está ocupado e não pode ser limpo.");
         }
 
-        // Limpe o quarto
+        // Marca o quarto como limpo e notifica threads em espera que o quarto está pronto para ocupação
         limpo = true;
         System.out.println("Quarto " + num + " limpo e pronto para ocupação.");
         System.out.println("---------------------");
         notifyAll();
     }
 
+    //getters
     public boolean isLimpo() {
         return limpo;
     }
