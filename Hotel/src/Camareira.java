@@ -1,7 +1,4 @@
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 class Camareira extends Thread {
   private static int count = 0;
@@ -33,7 +30,7 @@ class Camareira extends Thread {
         }
       }
       if (todosQuartosLimpos) {
-        this.parar();
+        this.pararDeLimpar();
       }
       try {
         Thread.sleep(11100);

@@ -32,7 +32,7 @@ class Recepcionista extends Thread {
       }
     }
     filaDeEspera.offer(hospede);
-    System.out.println("Hóspede " + hospede.getName() + " adicionado à fila de espera.");
+    System.out.println("Hóspede " + hospede.getName() + " na fila.");
   }
 
   @Override
@@ -44,7 +44,8 @@ class Recepcionista extends Thread {
           try {
             reservaDeQuarto(hospede);
           } catch (Qcheio e) {
-            System.out.println("Hóspede " + hospede.getName() + " deixou uma reclamação e saiu.");
+            System.out.println("Hóspede " + hospede.getName() + "saiu.");
+            System.out.println("---------------------");
           }
         }
       }
