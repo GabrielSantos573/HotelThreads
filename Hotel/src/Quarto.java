@@ -3,20 +3,20 @@ class Quarto {
     private boolean ocupado;
     private boolean limpo;
     private Hospede[] hospedes;
-    private int qtdHospedes;
+    private int nHospedes;
 
     public Quarto(int num) {
         this.num = num;
         this.ocupado = false;
         this.limpo = true;
         this.hospedes = new Hospede[4]; // 4 hóspedes MAX
-        this.qtdHospedes = 0;
+        this.nHospedes = 0;
     }
 
     // Método para reservar o quarto com um hóspede específico
     public synchronized void reservar(Hospede hospede) throws InterruptedException, Qcheio {
         // Enquanto o quarto estiver ocupado ou limpo e atingiu a capacidade máxima de hóspedes, espera
-        while (ocupado || (limpo && qtdHospedes >= 4)) {
+        while (ocupado || (limpo && nHospedes >= 4)) {
             if (!limpo) {
                 System.out.println("Quarto " + num + " sendo limpo " + hospede.getName() + "aguardando...");
             } else {
@@ -29,10 +29,10 @@ class Quarto {
 
         // Se o quarto não estiver ocupado, adiciona o hóspede e atualiza o estado do quarto
         if (!ocupado) {
-            hospedes[qtdHospedes++] = hospede;
+            hospedes[nHospedes++] = hospede;
             System.out.println(hospede.getName() + " reservou para si o Quarto " + num + ".");
             System.out.println("---------------------");
-            if (qtdHospedes == 4) {
+            if (nHospedes == 4) {
                 ocupado = true;
                 limpo = false;
                 System.out.println("Quarto " + num + " está lotado. Esperando a saída dos hospedes para a limpeza.");
@@ -50,7 +50,7 @@ class Quarto {
                 hospedes[i] = null;
             }
         }
-        qtdHospedes = 0;// Reseta o contador de hóspedes
+        nHospedes = 0;// Reseta o contador de hóspedes
         ocupado = false;
         limpo = false;
         System.out.println("Quarto " + num + " livre. Limpeza acontecendo.");
