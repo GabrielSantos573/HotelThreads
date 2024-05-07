@@ -1,3 +1,11 @@
+# Como executar
+
+Para executar este projeto, siga os passos abaixo:
+
+1. Certifique-se de ter o JDK instalado em seu ambiente de desenvolvimento.
+2. Clone o repositório na sua maquina.
+3. Execute a Classe main
+
 # Simulação de Funcionamento de um Hotel
 
 ## Entidades:
