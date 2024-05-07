@@ -8,7 +8,6 @@ class Hospede extends Thread {
     private Random random = new Random();
     private volatile boolean ativo;
 
-
     public Hospede(List<Quarto> quartos) {
         this.id = ++count;
         this.quartos = quartos;

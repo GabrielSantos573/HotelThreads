@@ -9,7 +9,7 @@ class Quarto {
         this.num = num;
         this.ocupado = false;
         this.limpo = true;
-        this.hospedes = new Hospede[4]; //4 hóspedes MAX
+        this.hospedes = new Hospede[4]; // 4 hóspedes MAX
         this.qtdHospedes = 0;
     }
 
@@ -23,7 +23,7 @@ class Quarto {
             System.out.println("---------------------");
             wait();
         }
-        
+
         if (!ocupado) {
             hospedes[qtdHospedes++] = hospede;
             System.out.println(hospede.getName() + " reservou para si o Quarto " + num + ".");
@@ -58,7 +58,7 @@ class Quarto {
         if (ocupado) {
             throw new Qocupado("Quarto " + num + " está ocupado e não pode ser limpo.");
         }
-        
+
         // Limpe o quarto
         limpo = true;
         System.out.println("Quarto " + num + " limpo e pronto para ocupação.");
